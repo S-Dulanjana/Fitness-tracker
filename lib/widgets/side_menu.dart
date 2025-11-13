@@ -1,4 +1,5 @@
 import 'package:fitness_tracker/constant/color.dart';
+import 'package:fitness_tracker/constant/constant.dart';
 import 'package:fitness_tracker/data/side_menu_data.dart';
 import 'package:flutter/material.dart';
 
@@ -10,30 +11,61 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
+  //index tracker
+  int selectedIndex = 0;
+
   final sideMenuData = SideMenuData();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: backGroundColor,
-      child: ListView.builder(
-        itemCount: sideMenuData.sideMenu.length,
-        itemBuilder: (context, index) {
-          return _SideMenuList(sideMenuData, index);
-        },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
+      child: Container(
+        color: backGroundColor,
+        child: ListView.builder(
+          itemCount: sideMenuData.sideMenu.length,
+          itemBuilder: (context, index) {
+            return _sideMenuList(sideMenuData, index);
+          },
+        ),
       ),
     );
   }
 
-  Widget _SideMenuList(SideMenuData sideMenuData, int index) {
-    return Row(
-      children: [
-        Icon(sideMenuData.sideMenu[index].icon, color: greyColor),
-
-        Text(
-          sideMenuData.sideMenu[index].title,
-          style: TextStyle(color: greyColor),
+  Widget _sideMenuList(SideMenuData sideMenuData, int index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedIndex = index;
+          print(selectedIndex);
+        });
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: selectedIndex == index ? sectionColor : Colors.transparent,
         ),
-      ],
+        child: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding),
+          child: Row(
+            children: [
+              Icon(
+                sideMenuData.sideMenu[index].icon,
+                color: selectedIndex == index ? blackColor : greyColor,
+              ),
+
+              SizedBox(width: 20),
+
+              Text(
+                sideMenuData.sideMenu[index].title,
+                style: TextStyle(
+                  color: selectedIndex == index ? blackColor : greyColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

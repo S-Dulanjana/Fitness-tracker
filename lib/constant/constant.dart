@@ -1,1 +1,1 @@
-const kDefaultPadding = 20;
+const double kDefaultPadding = 10.0;

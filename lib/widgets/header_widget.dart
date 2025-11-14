@@ -13,6 +13,7 @@ class HeaderWidget extends StatelessWidget {
             style: TextStyle(color: greyColor),
             decoration: InputDecoration(
               filled: true,
+              // ignore: deprecated_member_use
               fillColor: blackColor.withOpacity(0.2),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),

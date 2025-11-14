@@ -36,7 +36,6 @@ class _SideMenuState extends State<SideMenu> {
       onTap: () {
         setState(() {
           selectedIndex = index;
-          print(selectedIndex);
         });
       },
       child: Container(
